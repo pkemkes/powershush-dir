@@ -36,7 +36,17 @@ function GetFiles($arguments) {
     }
     $exeFiles = Get-ChildItem -Path $dir -Include *.exe -File -Recurse -ErrorAction SilentlyContinue -Force
     $dllFiles = Get-ChildItem -Path $dir -Include *.dll -File -Recurse -ErrorAction SilentlyContinue -Force
-    return ($exeFiles + $dllFiles)
+    if ($null -ne $exeFiles) {
+        $files = $exeFiles
+        if ($null -ne $dllFiles)
+        {
+            $files = $files + $dllFiles
+        }
+    }
+    else {
+        $files = $dllFiles
+    }
+    return $files
 }
 
 function RuleExists($name) {
