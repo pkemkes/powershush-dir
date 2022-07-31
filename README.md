@@ -13,6 +13,9 @@ or
 powershush-dir C:\path\to\directory
 ```
 
+### Note:
+This script elevates itself to admin rights, which also changes the current working directory to `System32`. Be aware that relative paths don't work as expected in this case.
+
 ### Example:
 ```
 > powershush-dir
